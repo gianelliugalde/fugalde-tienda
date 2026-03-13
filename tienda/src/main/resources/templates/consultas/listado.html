@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+<section th:replace="~{general/fragmentos :: tituloVerde}"></section>
+
+<div class="container-fluid mt-2">
+    <div th:replace="~{consultas/fragmentos :: consultas}"></div>
+    <div th:replace="~{consultas/fragmentos :: tarjetas}"></div>
+</div>
+
+</body>
+</html>

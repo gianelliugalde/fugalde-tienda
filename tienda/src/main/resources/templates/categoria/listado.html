@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>[[#{categoria.listado}]]</h2>
+        <a class="btn btn-primary" th:href="@{/categoria/nuevo}">
+            <i class="bi bi-plus-circle"></i> [[#{accion.agregar}]]
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-success">
+            <tr>
+                <th>ID</th>
+                <th>[[#{categoria.descripcion}]]</th>
+                <th>[[#{categoria.rutaImagen}]]</th>
+                <th>[[#{categoria.activo}]]</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${categorias}">
+                <td th:text="${c.idCategoria}"></td>
+                <td th:text="${c.descripcion}"></td>
+                <td th:text="${c.rutaImagen}"></td>
+                <td th:text="${c.activo}"></td>
+                <td>
+                    <a class="btn btn-warning btn-sm"
+                       th:href="@{/categoria/modificar/{idCategoria}(idCategoria=${c.idCategoria})}">
+                        [[#{accion.modificar}]]
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger btn-sm"
+                       th:href="@{/categoria/eliminar/{idCategoria}(idCategoria=${c.idCategoria})}">
+                        [[#{accion.eliminar}]]
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>

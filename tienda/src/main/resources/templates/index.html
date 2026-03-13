@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-md-12 text-center">
+            <h2 class="text-success">
+                <i class="bi bi-bag-fill"></i> [[#{index.nuestrosProductos}]]
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3" th:each="p : ${productos}">
+            <div class="card h-100 shadow-sm">
+                <img class="card-img-top" th:if="${p.rutaImagen != null}" th:src="${p.rutaImagen}" alt="img"/>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${p.descripcion}">Producto</h5>
+                    <p class="card-text" th:text="${p.detalle}">Detalle</p>
+                    <p class="fw-bold text-success">
+                        ₡ <span th:text="${#numbers.formatDecimal(p.precio,1,2)}">0</span>
+                    </p>
+                    <p class="small text-muted">
+                        Existencias: <span th:text="${p.existencias}">0</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>

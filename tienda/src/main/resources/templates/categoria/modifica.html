@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body>
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container">
+    <div class="card col-md-6 mx-auto">
+        <div class="card-header bg-success text-white">
+            Categoria
+        </div>
+        <div class="card-body">
+            <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post">
+                <input type="hidden" th:field="*{idCategoria}"/>
+
+                <div class="mb-3">
+                    <label class="form-label">[[#{categoria.descripcion}]]</label>
+                    <input class="form-control" th:field="*{descripcion}"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">[[#{categoria.rutaImagen}]]</label>
+                    <input class="form-control" th:field="*{rutaImagen}"/>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" th:field="*{activo}"/>
+                    <label class="form-check-label">[[#{categoria.activo}]]</label>
+                </div>
+
+                <button class="btn btn-success" type="submit">[[#{accion.guardar}]]</button>
+                <a class="btn btn-secondary" th:href="@{/categoria/listado}">[[#{accion.regresar}]]</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+</body>
+</html>

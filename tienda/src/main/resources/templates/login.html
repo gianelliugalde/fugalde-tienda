@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/fragmentos :: head}"></head>
+
+<body>
+
+<header th:replace="~{general/fragmentos :: header}"></header>
+
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4">
+
+            <div class="card">
+
+                <div class="card-header bg-success text-white text-center">
+                    Login
+                </div>
+
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="mb-3">
+                            <label>Usuario</label>
+                            <input class="form-control"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Password</label>
+                            <input type="password" class="form-control"/>
+                        </div>
+
+                        <button class="btn btn-success w-100">
+                            Ingresar
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+</body>
+</html>
