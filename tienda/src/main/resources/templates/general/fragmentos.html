@@ -3,8 +3,9 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -30,16 +31,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <div id="menuPrincipal" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+
+                    <li class="nav-item"
+                        sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                         <a class="nav-link" th:href="@{/categoria/listado}">Categorías</a>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item"
+                        sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                         <a class="nav-link" th:href="@{/producto/listado}">Productos</a>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item"
+                        sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                         <a class="nav-link" th:href="@{/consultas/listado}">Consultas</a>
                     </li>
-                    <li class="nav-item dropdown">
+
+                    <li class="nav-item dropdown"
+                        sec:authorize="hasRole('ROLE_ADMIN')">
                         <a class="nav-link dropdown-toggle" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown">
                             Administración
                         </a>
@@ -51,6 +60,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="idiomaMenu" role="button" data-bs-toggle="dropdown">
                             Idioma
@@ -60,6 +70,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li><a class="dropdown-item" href="?lang=en">EN</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/login}">
+                            <i class="bi bi-box-arrow-in-right"></i> Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link disabled" href="#">
+                            <i class="bi bi-person-fill"></i>
+                            <span sec:authentication="name"></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/logout}" method="post" class="d-inline">
+                            <button type="submit" class="nav-link btn btn-link">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+
                 </ul>
             </div>
         </div>
@@ -73,6 +105,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </h2>
     </div>
 </section>
+
+<footer th:fragment="footer" class="text-center mt-4 mb-3">
+    <p>TechShop - Derechos reservados</p>
+</footer>
 
 </body>
 </html>

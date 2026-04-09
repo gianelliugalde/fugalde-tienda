@@ -3,7 +3,9 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{general/fragmentos :: head}"></head>
 <body>
 <header th:replace="~{general/fragmentos :: header}"></header>
@@ -11,7 +13,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>[[#{categoria.listado}]]</h2>
-        <a class="btn btn-primary" th:href="@{/categoria/nuevo}">
+        <a sec:authorize="hasRole('ROLE_ADMIN')"
+           class="btn btn-primary"
+           th:href="@{/categoria/nuevo}">
             <i class="bi bi-plus-circle"></i> [[#{accion.agregar}]]
         </a>
     </div>
@@ -23,8 +27,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <th>[[#{categoria.descripcion}]]</th>
                 <th>[[#{categoria.rutaImagen}]]</th>
                 <th>[[#{categoria.activo}]]</th>
-                <th></th>
-                <th></th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')"></th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')"></th>
             </tr>
         </thead>
         <tbody>
@@ -33,13 +37,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <td th:text="${c.descripcion}"></td>
                 <td th:text="${c.rutaImagen}"></td>
                 <td th:text="${c.activo}"></td>
-                <td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="btn btn-warning btn-sm"
                        th:href="@{/categoria/modificar/{idCategoria}(idCategoria=${c.idCategoria})}">
                         [[#{accion.modificar}]]
                     </a>
                 </td>
-                <td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')">
                     <a class="btn btn-danger btn-sm"
                        th:href="@{/categoria/eliminar/{idCategoria}(idCategoria=${c.idCategoria})}">
                         [[#{accion.eliminar}]]
